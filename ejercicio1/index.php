@@ -18,7 +18,7 @@ MSG;
 $key = readline('Introduce la clave: ');
 $oper = $argv[1];
 $text = $argv[2];
-echo $text;
+
 echo "El resultado es: " . PHP_EOL;
 
 switch ($oper){
