@@ -5,6 +5,7 @@ use Acme\TopSecret\AES256Crypter;
 
 require __DIR__ . '/libs/autoloader.php';
 
+/*
 $key = "kakalaka";
 $crypter = new SimpleCrypter($key);
 
@@ -18,7 +19,7 @@ echo  $encText. PHP_EOL . PHP_EOL;
 
 echo "Texto original:" . PHP_EOL;
 echo  $original . PHP_EOL;
-
+*/
 
 $key = "kakalaka";
 $crypter = new AES256Crypter($key);
