@@ -37,7 +37,7 @@ class KeyFileStorage implements KeyStorageInterface{
     public function add(KeyRegister $keyregister): bool{
         try{
             $this->dataJson[$keyregister->name] = [
-                'username' => $keyregister->name,
+                'username' => $keyregister->username,
                 'password' => $keyregister->password,
                 'comment' => $keyregister->comment
             ];
@@ -58,12 +58,10 @@ class KeyFileStorage implements KeyStorageInterface{
     }
 
     public function find(string $name){
-        $item = array_search($name, $this->dataJson);        
-        if(!$item){
-            return null;
-        }
-
-        $keyregister = KeyRegister::createFromArray($name, $item);
+        
+        $keyregister = (array_key_exists($name, $this->dataJson))?
+             KeyRegister::createFromArray($name, $this->dataJson[$name]):
+             NULL;
         
         return $keyregister;
     }
