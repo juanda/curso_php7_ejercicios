@@ -24,6 +24,7 @@ $keyStorage = new KeyFileStorage($crypter, $keyfile);
 $item = $keyStorage->find($nombreRegistro);
 
 if(is_null($item)){
-    
+    echo "No hay ningún registro con ese nombre";
+    echo PHP_EOL;
 }
-print_r();
+print_r($item);
