@@ -1,6 +1,7 @@
 <?php
 
 require __DIR__  . '/libs/autoloader.php';
+require __DIR__ . '/readline.php';
 
 use Acme\TopSecret\AES256Crypter;
 use Acme\KeyStorage\KeyFileStorage;
@@ -8,11 +9,11 @@ use Acme\KeyStorage\KeyRegister;
 
 $keyfile = "keyfile";
 
-$name = readline('name: ');
-$username = readline('username: ');
-$password = readline('password: ');
-$comment = readline('comment: ');
-$key = readline('key: ');
+$name = _readline('name: ');
+$username = _readline('username: ');
+$password = _readline('password: ');
+$comment = _readline('comment: ');
+$key = _readline('key: ');
 
 $crypter = new AES256Crypter($key);
 

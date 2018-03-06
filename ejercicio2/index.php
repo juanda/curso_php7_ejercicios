@@ -31,7 +31,7 @@ $textMethod = "¿Qué método de cifrado quieres usar?" . PHP_EOL;
 $textMethod .= "1. Simple " . PHP_EOL;
 $textMethod .= "2. AES256 " . PHP_EOL;
 $textMethod .= "Introduce el nº " . PHP_EOL;
-
+echo $textMethod;exit;
 $key = _readline('Introduce la clave: ');
 $method = _readline($textMethod);
 $oper = $argv[1];
