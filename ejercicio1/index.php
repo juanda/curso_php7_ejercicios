@@ -15,7 +15,7 @@ MSG;
     return;
 }
 
-$key = readline('Introduce la clave: ');
+$key = _readline('Introduce la clave: ');
 $oper = $argv[1];
 $text = $argv[2];
 

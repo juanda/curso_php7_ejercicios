@@ -1,5 +1,16 @@
 <?php
 
+function _readline($prompt){
+    if (PHP_OS == 'WINNT') {
+        echo $prompt . ' ';
+        $line = stream_get_line(STDIN, 1024, PHP_EOL);
+      } else {
+        $line = readline($prompt . ' ');
+      }
+
+      return $line;
+}
+
 // ya existe una función crypt en PHP, así que la llamo _crypt
 function _crypt(string $str, string $key, string $oper): string {
     $md5Key = md5($key);
