@@ -3,6 +3,17 @@ require __DIR__ . '/libs/autoloader.php';
 
 use Acme\TopSecret as Crypters;
 
+function _readline($prompt){
+    if (PHP_OS == 'WINNT') {
+        echo $prompt . ' ';
+        $line = stream_get_line(STDIN, 1024, PHP_EOL);
+      } else {
+        $line = readline($prompt . ' ');
+      }
+
+      return $line;
+}
+
 if($argc != 3){
     $msg = <<< MSG
 Uso: $argv[0]  operación "texto a cifrar"
@@ -21,8 +32,8 @@ $textMethod .= "1. Simple " . PHP_EOL;
 $textMethod .= "2. AES256 " . PHP_EOL;
 $textMethod .= "Introduce el nº " . PHP_EOL;
 
-$key = readline('Introduce la clave: ');
-$method = readline($textMethod);
+$key = _readline('Introduce la clave: ');
+$method = _readline($textMethod);
 $oper = $argv[1];
 $text = $argv[2];
 
