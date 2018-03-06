@@ -20,8 +20,8 @@ function _crypt(string $str, string $key, string $oper): string {
 
     $strCrypted = "";
     for($i = 0; $i < $lenStr; $i++){
-        $j = ($i >= $lenMd5Key)? $i % $lenStr : $i;
-
+        $j = $i % $lenMd5Key;
+        
         if($oper == "encrypt"){
             $strCrypted .= chr(ord($str[$i]) + hexdec($md5Key[$j]));
         }elseif($oper == "decrypt"){

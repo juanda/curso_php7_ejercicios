@@ -12,7 +12,7 @@ class SimpleCrypter extends Crypter{
     
         $strCrypted = "";
         for($i = 0; $i < $lenStr; $i++){
-            $j = ($i >= $lenKey)? $i % $lenStr : $i;
+            $j = $i % $lenKey;
     
             if($oper == "encrypt"){
                 $strCrypted .= chr(ord($str[$i]) + hexdec($this->key[$j]));

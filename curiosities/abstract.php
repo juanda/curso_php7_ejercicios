@@ -1,0 +1,4 @@
+<?php
+
+$a = new MyClass();
+
