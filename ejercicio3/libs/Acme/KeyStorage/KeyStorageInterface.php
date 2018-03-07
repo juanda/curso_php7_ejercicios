@@ -12,5 +12,5 @@ Interface KeyStorageInterface{
     public function save(): bool;
     public function find(string $name);
     public function getAll(): array;
-    public function delete(KeyRegister $keyregister): bool;        
+    public function delete(string $name): bool;        
 }

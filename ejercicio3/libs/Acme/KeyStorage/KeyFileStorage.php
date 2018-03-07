@@ -68,10 +68,12 @@ class KeyFileStorage implements KeyStorageInterface{
     
     // unset() no devuelve ningún valor, mantendremos ese criterio en el 
     // borrado de elementos.
-    public function delete(KeyRegister $keyregister): bool{
-        if(!array_key_exists($keyregister->name)){
-            unset($this->dataJson[$keyregister->name]);           
+    public function delete(string $name): bool{
+        if(!array_key_exists($name)){
+            unset($this->dataJson[$name]);  
+            return TRUE;         
         }
+        return FALSE;
     }
 
     public function __destruct(){

@@ -1,8 +1,6 @@
 <?php
 require __DIR__ . '/libs/autoloader.php';
 
-$a = new \Acme\TopSecret\AES256Crypter();
-
 use Acme\TopSecret as Crypters;
 
 function _readline($prompt){
