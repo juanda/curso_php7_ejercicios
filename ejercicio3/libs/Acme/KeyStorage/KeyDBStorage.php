@@ -48,7 +48,7 @@ class KeyDBStorage implements KeyStorageInterface
 
     // unset() no devuelve ningún valor, mantendremos ese criterio en el
     // borrado de elementos.
-    public function delete(KeyRegister $keyregister): bool
+    public function delete(string $name): bool
     {
 
     }
