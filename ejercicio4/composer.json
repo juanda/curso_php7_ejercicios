@@ -1,0 +1,11 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Acme\\": "src/Acme",
+            "App\\Command\\": "src/Command"
+        }
+    },
+    "require": {
+        "symfony/console": "^3.4"
+    }
+}
