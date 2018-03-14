@@ -42,9 +42,7 @@ class GestorClavesController extends Controller {
             return $this->redirectToRoute('add');
         }
 
-        return $this->render('GestorClaves/add.html.twig', [
-                    'errors' => $errors
-        ]);
+        return $this->render('GestorClaves/add.html.twig');
     }
 
     /**
