@@ -5,8 +5,8 @@ namespace Acme\TopSecret;
 abstract class Crypter{
 
     protected $key;
-
-    public function __construct($key){
+     
+    public function setKey($key){
         $this->key = hash('sha256', $key);
     }
 

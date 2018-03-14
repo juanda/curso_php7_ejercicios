@@ -13,12 +13,16 @@ class KeyFileStorage implements KeyStorageInterface{
 
     public function __construct(Crypter $crypter, ...$options){
         $this->crypter = $crypter;        
-        $this->dataFilePath = $options[0];
-
+        $this->dataFilePath = $options[0];        
+    }
+    
+    public function openDataFile($key){
+        
+        $this->crypter->setKey($key);
+        
         if(!file_exists($this->dataFilePath)){            
-            file_put_contents($this->dataFilePath, $crypter->encrypt('{}'));
+            file_put_contents($this->dataFilePath, $this->crypter->encrypt('{}'));
         }
-
 
         $data = file_get_contents($this->dataFilePath);
         $decodedData = $this->crypter->decrypt($data);

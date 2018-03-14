@@ -1,0 +1,47 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Listar clave{% endblock %}
+
+{% block container %}
+    <h1>Gestor de claves</h1>
+
+
+
+    <form action="{{url('list')}}" method="post">        
+        <div class="form-group">
+            <label for="name">key: </label> 
+            <input class="form-control" name="key" id="key" />
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="dale"/>
+
+    </form>
+
+
+
+        <br/>
+        
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">name</th>
+                <th scope="col">username</th>
+                <th scope="col">password</th>
+                <th scope="col">email</th>
+                <th scope="col">comment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, item in registers%}
+                <tr>
+                    <th scope="row">{{key}}</th>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.password }}</td>
+                    <td>{{ (item.email is defined)? item.email : '' }}</td>
+                    <td>{{ item.comment }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

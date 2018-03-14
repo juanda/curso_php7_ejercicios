@@ -9,32 +9,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Acme\KeyStorage\KeyFileStorage;
 use Acme\KeyStorage\KeyRegister;
 use Acme\TopSecret\AES256Crypter;
+use AppBundle\Entity\Register;
 
 class GestorClavesController extends Controller {
 
     /**
      * @Route("/add", name="add")
      */
-    public function addAction(Request $request) {
-        $keyfile = $this->getParameter('keyfile');
+    public function addAction(KeyFileStorage $keyStorage, Request $request) {
+
+        //$keyStorage = $this->container->get('keystorage');
 
         $message = null;
         if ($request->getMethod() == "POST") {
-            $name = $request->get('name');
-            $username = $request->get('username');
-            $password = $request->get('password');
-            $comment = $request->get('comment');
-            $key = $request->get('key');
+            $keyStorage->openDataFile($request->get('key'));
 
-            $crypter = new AES256Crypter($key);
-
-            $register = KeyRegister::createFromArray($name, [
-                        'username' => $username,
-                        'password' => $password,
-                        'comment' => $comment,
-            ]);
-
-            $keyStorage = new KeyFileStorage($crypter, $keyfile);
+            $register = KeyRegister::createFromRequest($request);
 
             if ($keyStorage->add($register)) {
                 $message = "Registro añadido correctamente";
@@ -43,7 +33,25 @@ class GestorClavesController extends Controller {
             }
         }
         return $this->render('GestorClaves/add.html.twig', array(
-            'message' => $message
+                    'message' => $message
+        ));
+    }
+
+    /**
+     * @Route("/list", name="list")
+     */
+    public function listAction(KeyFileStorage $keyStorage, Request $request) {
+
+        
+        $registers = [];
+        if ($request->getMethod() == "POST") {            
+            $keyStorage->openDataFile($request->get('key'));
+            $registers = $keyStorage->getAll();
+            dump($registers);
+        }
+
+        return $this->render('GestorClaves/list.html.twig', array(
+                    'registers' => $registers
         ));
     }
 

@@ -1,18 +1,37 @@
-{% extends "base.html.twig" %}
+{% extends "layout.html.twig" %}
 
 {% block title %}Añadir clave{% endblock %}
 
-{% block body %}
+{% block container %}
     <h1>Gestor de claves</h1>
     <h3>{{message}}</h3>
     <form action="{{url('add')}}" method="post">
-        name: <input name="name" id="name" />
-        username: <input name="username" id="username" />
-        password: <input name="password" id="password" />
-        comment: <input name="comment" id="comment" />
-        key: <input name="key" id="key" />
+        <div class="form-group">
+            <label for="name">name:</label> 
+            <input class="form-control" name="name" id="name" />
+        </div>
+        <div class="form-group">
+            <label for="name">username: </label> 
+            <input class="form-control" name="username" id="username" />
+        </div>
+        <div class="form-group">
+            <label for="name">password: </label> 
+            <input class="form-control" name="password" id="password" />
+        </div>
+        <div class="form-group">
+            <label for="name">comment: </label> 
+            <input class="form-control" name="comment" id="comment" />
+        </div>
+        <div class="form-group">
+            <label for="name">email: </label> 
+            <input class="form-control" name="email" id="email" />
+        </div>
+        <div class="form-group">
+            <label for="name">key: </label> 
+            <input class="form-control" name="key" id="key" />
+        </div>
 
-        <input type="submit" value="dale"/>
+        <input class="btn btn-primary" type="submit" value="dale"/>
 
     </form>
 {% endblock %}
