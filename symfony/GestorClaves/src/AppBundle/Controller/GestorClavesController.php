@@ -7,6 +7,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use AppBundle\Form\RegisterType;
 use Acme\KeyStorage\KeyFileStorage;
 use Acme\KeyStorage\KeyRegister;
 
@@ -53,32 +57,64 @@ class GestorClavesController extends Controller {
      */
     public function addAction(
     KeyFileStorage $keyStorage, ValidatorInterface $validator, SessionInterface $session, Request $request) {
-
-        $key = $session->get('key');        
+        //////////REFACTORIZAR/////////////////
+        $key = $session->get('key');
         if (is_null($key)) {
             return $this->redirectToRoute('key');
-        }        
+        }
         $keyStorage->openDataFile($key);
+        ///////////////////////////////////////
 
-        $errors = null;
-        if ($request->getMethod() == "POST") {
+        $register = new KeyRegister();
 
-            $register = KeyRegister::createFromRequest($request);
-            $errors = $validator->validate($register);
-            if (count($errors) > 0) {
-                return $this->render('GestorClaves/add.html.twig', [
-                            'errors' => $errors
-                ]);
-            } else if ($keyStorage->add($register)) {
-                $this->addFlash(
-                        'notice', 'Registro añadido correctamente'
-                );
-            }
+        $form = $this->createForm(RegisterType::class, $register);
+//        $form = $this->createFormBuilder($register)
+//                ->add('name', TextType::class)
+//                ->add('username', TextType::class)
+//                ->add('password', TextType::class)
+//                ->add('email', EmailType::class)
+//                ->add('comment', TextType::class)
+//                ->add('save', SubmitType::class, array('label' => 'Crear registro'))
+//                ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $register = $form->getData();
+
+            $keyStorage->add($register);
+
+            $this->addFlash(
+                    'notice', 'Registro añadido correctamente'
+            );
 
             return $this->redirectToRoute('add');
         }
 
-        return $this->render('GestorClaves/add.html.twig');
+        return $this->render('GestorClaves/add.html.twig', array(
+                    'form' => $form->createView(),
+        ));
+
+//        $errors = null;
+//        if ($request->getMethod() == "POST") {
+//
+//            $register = KeyRegister::createFromRequest($request);
+//            $errors = $validator->validate($register);
+//            if (count($errors) > 0) {
+//                return $this->render('GestorClaves/add.html.twig', [
+//                            'errors' => $errors
+//                ]);
+//            } else if ($keyStorage->add($register)) {
+//                $this->addFlash(
+//                        'notice', 'Registro añadido correctamente'
+//                );
+//            }
+//
+//            return $this->redirectToRoute('add');
+//        }
+//
+//        return $this->render('GestorClaves/add.html.twig');
     }
 
     /**
@@ -87,11 +123,9 @@ class GestorClavesController extends Controller {
     public function listAction(KeyFileStorage $keyStorage, SessionInterface $session, Request $request) {
 
         $key = $session->get('key');
-
         if (is_null($key)) {
             return $this->redirectToRoute('key');
         }
-
         $keyStorage->openDataFile($key);
 
         $registers = $keyStorage->getAll();

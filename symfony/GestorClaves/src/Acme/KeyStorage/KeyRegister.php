@@ -48,7 +48,11 @@ class KeyRegister {
      */
     public $email;
 
-    public function __construct($name, $username, $password, $comment, $email) {
+    public function __construct($name = null,
+            $username = null,
+            $password = null,
+            $comment = null,
+            $email = null) {
 
         $this->name = $name;
 
