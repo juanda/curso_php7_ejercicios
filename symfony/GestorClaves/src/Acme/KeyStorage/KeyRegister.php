@@ -2,7 +2,7 @@
 
 namespace Acme\KeyStorage;
 
-use Symfony\Component\Validator\Constraint as Assert;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Request;
 
 class KeyRegister {

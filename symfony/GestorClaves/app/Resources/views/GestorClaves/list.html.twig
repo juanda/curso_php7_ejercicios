@@ -17,8 +17,6 @@
 
     </form>
 
-
-
         <br/>
         
     <table class="table">
@@ -35,10 +33,10 @@
             {% for key, item in registers%}
                 <tr>
                     <th scope="row">{{key}}</th>
-                    <td>{{ item.username }}</td>
-                    <td>{{ item.password }}</td>
+                    <td>{{ (item.username is defined)? item.username : '' }}</td>
+                    <td>{{ (item.password is defined)? item.password : '' }}</td>
                     <td>{{ (item.email is defined)? item.email : '' }}</td>
-                    <td>{{ item.comment }}</td>
+                    <td>{{ (item.comment is defined)? item.comment: '' }}</td>
                 </tr>
             {% endfor %}
         </tbody>

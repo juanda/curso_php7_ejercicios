@@ -4,37 +4,47 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Acme\KeyStorage\KeyFileStorage;
 use Acme\KeyStorage\KeyRegister;
-use Acme\TopSecret\AES256Crypter;
-use AppBundle\Entity\Register;
 
 class GestorClavesController extends Controller {
 
     /**
      * @Route("/add", name="add")
      */
-    public function addAction(KeyFileStorage $keyStorage, Request $request) {
-
-        //$keyStorage = $this->container->get('keystorage');
-
-        $message = null;
-        if ($request->getMethod() == "POST") {
-            $keyStorage->openDataFile($request->get('key'));
+    public function addAction(
+    KeyFileStorage $keyStorage, ValidatorInterface $validator, Request $request) {
+       
+        $errors = null;
+        if ($request->getMethod() == "POST") {           
+            try {
+                $keyStorage->openDataFile($request->get('key'));
+            } catch (\Exception $e) {                          
+                return $this->render('GestorClaves/add.html.twig', [
+                            'json_invalid' => $e->getMessage()
+                ]);
+            }
 
             $register = KeyRegister::createFromRequest($request);
+            $errors = $validator->validate($register);
+            if (count($errors) > 0) {
+                return $this->render('GestorClaves/add.html.twig', [
+                            'errors' => $errors
+                ]);
+            } else if ($keyStorage->add($register)) {
+                $this->addFlash(
+                        'notice', 'Registro añadido correctamente'
+                );
+            } 
 
-            if ($keyStorage->add($register)) {
-                $message = "Registro añadido correctamente";
-            } else {
-                $message = "No he podido añadir el registro";
-            }
+            return $this->redirectToRoute('add');
         }
-        return $this->render('GestorClaves/add.html.twig', array(
-                    'message' => $message
-        ));
+
+        return $this->render('GestorClaves/add.html.twig', [
+                    'errors' => $errors
+        ]);
     }
 
     /**
@@ -42,9 +52,9 @@ class GestorClavesController extends Controller {
      */
     public function listAction(KeyFileStorage $keyStorage, Request $request) {
 
-        
+
         $registers = [];
-        if ($request->getMethod() == "POST") {            
+        if ($request->getMethod() == "POST") {
             $keyStorage->openDataFile($request->get('key'));
             $registers = $keyStorage->getAll();
             dump($registers);

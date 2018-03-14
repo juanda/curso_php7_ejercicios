@@ -30,9 +30,7 @@ class KeyFileStorage implements KeyStorageInterface{
         $this->dataJson = json_decode($decodedData, true);
 
         if(!isset($this->dataJson) || is_null($this->dataJson)){
-            echo "El fichero no es un JSON válido. Posiblemente la clave suministrada no sea válida";
-            echo PHP_EOL;            
-            exit;
+            throw new \Exception("El fichero no es un JSON válido. Posiblemente la clave suministrada no sea válida");           
         }       
         
         $this->valid = TRUE;
@@ -43,6 +41,7 @@ class KeyFileStorage implements KeyStorageInterface{
             $this->dataJson[$keyregister->name] = [
                 'username' => $keyregister->username,
                 'password' => $keyregister->password,
+                'email' => $keyregister->email,
                 'comment' => $keyregister->comment
             ];
             return true;
