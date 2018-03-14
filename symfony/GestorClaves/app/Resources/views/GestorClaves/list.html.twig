@@ -3,22 +3,14 @@
 {% block title %}Listar clave{% endblock %}
 
 {% block container %}
-    <h1>Gestor de claves</h1>
+    <h1>Gestor de claves</h1>    
 
-
-
-    <form action="{{url('list')}}" method="post">        
-        <div class="form-group">
-            <label for="name">key: </label> 
-            <input class="form-control" name="key" id="key" />
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
         </div>
+    {% endfor %}
 
-        <input class="btn btn-primary" type="submit" value="dale"/>
-
-    </form>
-
-        <br/>
-        
     <table class="table">
         <thead>
             <tr>

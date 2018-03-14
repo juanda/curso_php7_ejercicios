@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Listar clave{% endblock %}
+
+{% block container %}
+    <h1>Gestor de claves</h1>
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    
+    {% if json_invalid is defined %}
+        <div class="alert alert-danger" role="alert">
+            {{ json_invalid }}
+        </div>
+    {% endif %}
+
+    <form action="{{url('key')}}" method="post">        
+        <div class="form-group">
+            <label for="name">Introduce la clave: </label> 
+            <input class="form-control" name="key" id="key" />
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="dale"/>
+
+    </form>
+
+
+{% endblock %}

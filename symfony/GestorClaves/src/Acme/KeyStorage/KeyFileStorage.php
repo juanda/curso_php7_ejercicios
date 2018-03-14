@@ -43,8 +43,8 @@ class KeyFileStorage implements KeyStorageInterface{
                 'password' => $keyregister->password,
                 'email' => $keyregister->email,
                 'comment' => $keyregister->comment
-            ];
-            return true;
+            ];           
+            return $this->save();
         }catch(\Exception $e){
             return false;
         }

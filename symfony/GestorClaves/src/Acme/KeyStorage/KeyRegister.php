@@ -79,9 +79,8 @@ class KeyRegister {
         $username = $request->get('username');
         $password = $request->get('password');
         $comment = $request->get('comment');
-        $email = $request->get('email');
-        $key = $request->get('key');
+        $email = $request->get('email');       
 
-        return new KeyRegister($name, $username, $password, $comment, $email, $key);
+        return new KeyRegister($name, $username, $password, $comment, $email);
     }
 }
