@@ -21,6 +21,7 @@ class GoalSystemAuthenticator extends AbstractGuardAuthenticator
     public function supports(Request $request)
     {
         return !is_null($request->get('token'));
+        #return true;
     }
 
     /**

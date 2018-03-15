@@ -15,12 +15,15 @@ class GoalSystemUserProvider implements UserProviderInterface
         // make a call to your webservice here
         $userFile = file_get_contents(__DIR__ . '/users.json');
         $userJson = json_decode($userFile, true);
-        
+               
         if (array_key_exists($token, $userJson)) {            
-
-            $username = $userJson[$token]['username'];
+            
+            $username = $token;
             $roles = $userJson[$token]['roles'];
-            return new GoalSystemUser($username, '', '', $roles);
+            $properties =$userJson[$token]['properties'];
+            
+            dump($username);
+            return new GoalSystemUser($username, $roles, $properties);
         }
                 
         throw new UnauthorizedHttpException(sprintf('No existe usuario con el token "%s" ', $token));

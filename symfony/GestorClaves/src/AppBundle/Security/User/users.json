@@ -1,11 +1,20 @@
 {
     "11111": {
         "username": "juanda",
-        "roles": ["ROLE_ADMIN"]
+        "roles": ["ROLE_ADMIN"],
+        "properties": [
+            "con gafas",
+            "rapado"
+        ]
+        
     },
     "22222": {
         "username": "pepe",
-        "roles": ["ROLE_USER"]
+        "roles": ["ROLE_USER"],
+        "properties": [
+            "sin gafas",
+            "con melenas"
+        ]
     }
 
 }

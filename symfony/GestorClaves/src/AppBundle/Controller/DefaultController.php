@@ -28,8 +28,11 @@ class DefaultController extends Controller
      */
     public function HelloAction(\AppBundle\MiServicio $miservicio, Request $request)
     {
-        $text = $miservicio->get();
-        return new Response(sprintf('<html><body>Hola %s</body></html>', $text));
+        $user = $this->getUser();
+        
+        return new Response(sprintf('<html><body>Hola <pre>%s</pre></body></html>', print_r($user, true)));
+        
+        
     }
     
 }

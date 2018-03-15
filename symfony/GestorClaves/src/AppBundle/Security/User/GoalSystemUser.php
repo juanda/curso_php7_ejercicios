@@ -7,17 +7,14 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
 
 class GoalSystemUser implements UserInterface, EquatableInterface
 {
-    private $username;
-    private $password;
-    private $salt;
+    private $username;   
     private $roles;
 
-    public function __construct($username, $password, $salt, array $roles)
+    public function __construct($username, array $roles, array $properties)
     {
-        $this->username = $username;
-        $this->password = $password;
-        $this->salt = $salt;
+        $this->username = $username;               
         $this->roles = $roles;
+        $this->properties = $properties;
     }
 
     public function getRoles()
@@ -27,17 +24,21 @@ class GoalSystemUser implements UserInterface, EquatableInterface
 
     public function getPassword()
     {
-        return $this->password;
+        return NULL;
     }
 
     public function getSalt()
     {
-        return $this->salt;
+        return NULL;
     }
 
     public function getUsername()
     {
         return $this->username;
+    }
+    
+    public function getProperties(){
+        return $this->properties;        
     }
 
     public function eraseCredentials()
