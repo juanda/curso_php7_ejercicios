@@ -1,24 +1,50 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
-
+    encoders:
+        AppBundle\Security\User\GoalServiceUser: plaintext
+            
+        Symfony\Component\Security\Core\User\User: 
+            algorithm: bcrypt
+            cost: 12
+        
     # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
         in_memory:
-            memory: ~
+            memory: 
+                users:
+                    juanda:
+                        password: $2y$12$V4Msjtms5TylY7e18FLepu2YHtUq62yqz/.KSt5rMs8ux0OGTyk9y
+                        roles: 'ROLE_ADMIN'                        
+    
+        goalsystem:
+            id: AppBundle\Security\User\GoalSystemUserProvider
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        main:
+            
+        goalsystem:
+            pattern: ^/goalsystem
+            provider: goalsystem
+            guard:
+                authenticators:
+                        - AppBundle\Security\GoalSystemAuthenticator
+        
+        main:                   
             anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             #http_basic: ~
 
             # https://symfony.com/doc/current/security/form_login_setup.html
-            #form_login: ~
+            #form_login: ~                            
+        
+    access_control:
+        - {path: ^/key, role: IS_AUTHENTICATED_FULLY}

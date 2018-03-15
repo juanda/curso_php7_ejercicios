@@ -11,7 +11,7 @@ class MiServicio{
     
     public function get(){
         $this->logger->debug("Hola");
-        return "Hola";        
+        return "Soy el servicio MiServicio";        
     }
     
 }

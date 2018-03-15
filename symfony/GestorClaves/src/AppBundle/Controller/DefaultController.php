@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -20,4 +21,15 @@ class DefaultController extends Controller
             'base_dir' => $text ,
         ]);
     }
+    
+    
+    /**
+     * @Route("/goalsystem/hello", name="goalsystem_hello")
+     */
+    public function HelloAction(\AppBundle\MiServicio $miservicio, Request $request)
+    {
+        $text = $miservicio->get();
+        return new Response(sprintf('<html><body>Hola %s</body></html>', $text));
+    }
+    
 }

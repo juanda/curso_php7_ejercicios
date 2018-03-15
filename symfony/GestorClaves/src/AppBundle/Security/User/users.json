@@ -1,0 +1,11 @@
+{
+    "11111": {
+        "username": "juanda",
+        "roles": ["ROLE_ADMIN"]
+    },
+    "22222": {
+        "username": "pepe",
+        "roles": ["ROLE_USER"]
+    }
+
+}
