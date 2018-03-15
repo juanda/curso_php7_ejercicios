@@ -1,7 +1,0 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
-
-blog: 
-    path:     /blog/{slug}
-    defaults: { _controller: AppBundle:Blog:show }
