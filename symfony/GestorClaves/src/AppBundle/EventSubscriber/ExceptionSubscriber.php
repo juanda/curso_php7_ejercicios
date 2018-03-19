@@ -13,10 +13,10 @@ class ExceptionSubscriber implements EventSubscriberInterface {
         // return the subscribed events, their methods and priorities
         return array(
             KernelEvents::EXCEPTION => array(
-                array('processException', 10),
+               // array('processException', 10),
                 array('logException', 0),
                 array('notifyException', -10),
-                array('resourceNotFoundException', 20),
+               // array('resourceNotFoundException', 20),
             )
         );
     }
@@ -44,7 +44,7 @@ class ExceptionSubscriber implements EventSubscriberInterface {
 
     public function resourceNotFoundException(GetResponseForExceptionEvent $event) {
         $response = new Response(
-                sprintf('<html><body><h1>Not Found Exceptiooon</h1><pre>%s</pre></body></html>', print_r($event->getException()->getMessage(), true)));
+                sprintf('<html><body><h1>Not Found Exception</h1><pre>%s</pre></body></html>', print_r($event->getException()->getMessage(), true)));
 
         $event->setResponse($response);
     }

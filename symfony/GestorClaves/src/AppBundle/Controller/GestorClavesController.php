@@ -57,14 +57,7 @@ class GestorClavesController extends Controller {
      */
     public function addAction(
     KeyFileStorage $keyStorage, ValidatorInterface $validator, SessionInterface $session, Request $request) {
-        //////////REFACTORIZAR/////////////////
-        $key = $session->get('key');
-        if (is_null($key)) {
-            return $this->redirectToRoute('key');
-        }
-        $keyStorage->openDataFile($key);
-        ///////////////////////////////////////
-
+               
         $register = new KeyRegister();
 
         $form = $this->createForm(RegisterType::class, $register);
@@ -121,13 +114,7 @@ class GestorClavesController extends Controller {
      * @Route("/list", name="list")
      */
     public function listAction(KeyFileStorage $keyStorage, SessionInterface $session, Request $request) {
-
-        $key = $session->get('key');
-        if (is_null($key)) {
-            return $this->redirectToRoute('key');
-        }
-        $keyStorage->openDataFile($key);
-
+        
         $registers = $keyStorage->getAll();
 
         return $this->render('GestorClaves/list.html.twig', array(
@@ -143,7 +130,7 @@ class GestorClavesController extends Controller {
                         // ...
         ));
     }
-  
+
     /**
      * @Route("/find/{register_key}", name="find")
      */
@@ -157,9 +144,9 @@ class GestorClavesController extends Controller {
         $keyStorage->openDataFile($key);
 
         $register = $keyStorage->find($register_key);
-        
+
         $this->denyAccessUnlessGranted('view', $register);
-                
+
 
         return $this->render('GestorClaves/find.html.twig', array(
                     'key' => $register_key,
