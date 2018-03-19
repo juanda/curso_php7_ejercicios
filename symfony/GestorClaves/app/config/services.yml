@@ -52,3 +52,8 @@ services:
     Acme\KeyStorage\KeyFileStorage: 
         arguments:
             $options: %keyfile%
+            
+            
+#    AppBundle\EventListener\ExceptionListener:
+#        tags:
+#            - { name: kernel.event_listener, event: kernel.exception }
