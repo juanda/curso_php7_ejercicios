@@ -25,7 +25,6 @@ class GestorClavesControllerSubscriber implements EventSubscriberInterface {
         
     }
 
-
     public static function getSubscribedEvents() {
         
         // return the subscribed events, their methods and priorities

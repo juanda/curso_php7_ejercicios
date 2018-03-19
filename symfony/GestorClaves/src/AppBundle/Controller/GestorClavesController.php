@@ -28,9 +28,10 @@ class GestorClavesController extends Controller {
     }
 
     /**
-     * @Route("/key", name="key")
+     * @Route("/key/{_locale}", name="key")
      */
-    public function keyAction(KeyFileStorage $keyStorage, SessionInterface $session, Request $request) {
+    public function keyAction(KeyFileStorage $keyStorage, SessionInterface $session, Request $request, $_locale='es') {
+                
         if ($request->getMethod() == "POST") {
             try {
                 $key = $request->get('key');

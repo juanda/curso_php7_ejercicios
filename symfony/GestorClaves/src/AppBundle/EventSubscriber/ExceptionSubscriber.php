@@ -13,9 +13,10 @@ class ExceptionSubscriber implements EventSubscriberInterface {
         // return the subscribed events, their methods and priorities
         return array(
             KernelEvents::EXCEPTION => array(
+                array('onKernelException', 0)
                // array('processException', 10),
-                array('logException', 0),
-                array('notifyException', -10),
+               // array('logException', 0),
+               // array('notifyException', -10),
                // array('resourceNotFoundException', 20),
             )
         );
