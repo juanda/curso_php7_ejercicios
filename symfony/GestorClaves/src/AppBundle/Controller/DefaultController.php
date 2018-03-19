@@ -22,6 +22,17 @@ class DefaultController extends Controller
         ]);
     }
     
+    /**
+     * @Route("/admin", name="admin")
+     */
+    public function AdminAction(\AppBundle\MiServicio $miservicio, Request $request)
+    {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+        $user = $this->getUser();
+        
+        return new Response(sprintf('<html><body>Administración. user: <pre>%s</pre></body></html>', print_r($user, true)));
+                
+    }
     
     /**
      * @Route("/goalsystem/hello", name="goalsystem_hello")
@@ -31,8 +42,6 @@ class DefaultController extends Controller
         $user = $this->getUser();
         
         return new Response(sprintf('<html><body>Hola <pre>%s</pre></body></html>', print_r($user, true)));
-        
-        
+                
     }
-    
 }

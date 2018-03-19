@@ -15,7 +15,10 @@ security:
                 users:
                     juanda:
                         password: $2y$12$V4Msjtms5TylY7e18FLepu2YHtUq62yqz/.KSt5rMs8ux0OGTyk9y
-                        roles: 'ROLE_ADMIN'                        
+                        roles: 'ROLE_ADMIN'
+                    pepe:
+                        password: $2y$12$V4Msjtms5TylY7e18FLepu2YHtUq62yqz/.KSt5rMs8ux0OGTyk9y
+                        roles: 'ROLE_USER' 
     
         goalsystem:
             id: AppBundle\Security\User\GoalSystemUserProvider
@@ -33,11 +36,15 @@ security:
                 authenticators:
                         - AppBundle\Security\GoalSystemAuthenticator
         
-        main:                   
+        main:   
+            provider: in_memory
             anonymous: ~
             form_login:
                 login_path: login
                 check_path: login
+            logout: 
+                path: /logout
+                target: /key
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
@@ -47,4 +54,6 @@ security:
             #form_login: ~                            
         
     access_control:
-        - {path: ^/key, role: IS_AUTHENTICATED_FULLY}
+        - {path: ^/(key|list), role: IS_AUTHENTICATED_FULLY}
+        - {path: ^/add, role: ROLE_ADMIN}
+        

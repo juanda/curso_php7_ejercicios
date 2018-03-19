@@ -26,9 +26,9 @@ class SecurityController extends Controller {
     }
     
     /**
-     * @Route("/check_login", name="check_login")
+     * @Route("/logout", name="logout")
      */
-    public function checkloginAction() {}
+    public function logoutAction() {}
        
        
 }

@@ -1,7 +1,35 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}AppBundle:GestorClaves:find{% endblock %}
+{% block title %}Ver Registro{% endblock %}
 
-{% block body %}
-<h1>Welcome to the GestorClaves:find page</h1>
+{% block container %}
+    <h1>Gestor de claves</h1>    
+
+    {% for message in app.flashes('notice') %}
+        <div class="alert alert-info" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">name</th>
+                <th scope="col">username</th>
+                <th scope="col">password</th>
+                <th scope="col">email</th>
+                <th scope="col">comment</th>
+            </tr>
+        </thead>
+        <tbody>            
+                <tr>
+                    <th scope="row">{{key}}</th>
+                    <td>{{ (register.username is defined)? register.username : '' }}</td>
+                    <td>{{ (register.password is defined)? register.password : '' }}</td>
+                    <td>{{ (register.email is defined)? register.email : '' }}</td>
+                    <td>{{ (register.comment is defined)? register.comment: '' }}</td>
+                </tr>            
+        </tbody>
+    </table>
+
 {% endblock %}

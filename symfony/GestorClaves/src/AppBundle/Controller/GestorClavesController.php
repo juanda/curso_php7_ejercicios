@@ -143,13 +143,27 @@ class GestorClavesController extends Controller {
                         // ...
         ));
     }
-
+  
     /**
-     * @Route("/find")
+     * @Route("/find/{register_key}", name="find")
      */
-    public function findAction() {
-        return $this->render('AppBundle:GestorClaves:find.html.twig', array(
-                        // ...
+    public function findAction(KeyFileStorage $keyStorage, SessionInterface $session, $register_key) {
+
+        $key = $session->get('key');
+        if (is_null($key)) {
+            return $this->redirectToRoute('key');
+        }
+
+        $keyStorage->openDataFile($key);
+
+        $register = $keyStorage->find($register_key);
+        
+        $this->denyAccessUnlessGranted('view', $register);
+                
+
+        return $this->render('GestorClaves/find.html.twig', array(
+                    'key' => $register_key,
+                    'register' => $register
         ));
     }
 

@@ -4,6 +4,9 @@
     <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}">
 {% endblock %}       
 {% block body %}
+    
+    <a href="{{ url('add') }}">Añadir</a> | <a href="{{ url('list') }}">Listar</a> | <a href="{{ url('logout') }}">Salir</a>
+           
     <div class="container-fluid">
     {% block container %}{% endblock %}
     </div>
