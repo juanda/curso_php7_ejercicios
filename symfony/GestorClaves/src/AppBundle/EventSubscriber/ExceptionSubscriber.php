@@ -5,7 +5,7 @@ namespace AppBundle\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ExceptionSubscriber implements EventSubscriberInterface {
 
@@ -16,7 +16,7 @@ class ExceptionSubscriber implements EventSubscriberInterface {
                array('processException', 10),
                array('logException', 0),
                array('notifyException', -10),
-               array('resourceNotFoundException', 20),
+               array('keyNotFoundException', 200),
             )
         );
     }
@@ -42,11 +42,12 @@ class ExceptionSubscriber implements EventSubscriberInterface {
 //        $event->setResponse($response);
     }
 
-    public function resourceNotFoundException(GetResponseForExceptionEvent $event) {
-//        $response = new Response(
-//                sprintf('<html><body><h1>Not Found Exception</h1><pre>%s</pre></body></html>', print_r($event->getException()->getMessage(), true)));
-//
-//        $event->setResponse($response);
+    public function keyNotFoundException(GetResponseForExceptionEvent $event) {
+        
+        if($event->getException() instanceof KeyNeededException){
+            
+            $event->setResponse(new RedirectResponse('/key'));
+        }
     }
 
 }

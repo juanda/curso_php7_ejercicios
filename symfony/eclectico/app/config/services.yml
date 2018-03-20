@@ -33,27 +33,3 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
-    
-#    crypter:
-#        class: Acme\TopSecret\AES256Crypter        
-#
-#    keystorage:
-#        public: true
-#        class: Acme\KeyStorage\KeyFileStorage
-#        arguments:
-#            $crypter: '@crypter'
-#            $options: %keyfile%
-
-    Acme\TopSecret\Crypter: '@Acme\TopSecret\AES256Crypter'
-    
-    Acme\: 
-        resource: '../../src/Acme/*'
-        
-    Acme\KeyStorage\KeyFileStorage: 
-        arguments:
-            $options: %keyfile%
-            
-            
-#    AppBundle\EventListener\ExceptionListener:
-#        tags:
-#            - { name: kernel.event_listener, event: kernel.exception, priority: 16 }
