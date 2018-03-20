@@ -5,8 +5,15 @@
 {% endblock %}       
 {% block body %}
     
-    <a href="{{ url('add') }}">Añadir</a> | <a href="{{ url('list') }}">Listar</a> | <a href="{{ url('logout') }}">Salir</a>
-           
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ url('add') }}">{% trans %}Añadir{% endtrans %}</a> | 
+    {% endif %}
+    
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    <a href="{{ url('list') }}">{% trans %}Listar{% endtrans %}</a> |
+    <a href="{{ url('logout') }}">{% trans %}Salir{% endtrans %}</a>
+    {% endif%}       
+    
     <div class="container-fluid">
     {% block container %}{% endblock %}
     </div>

@@ -1,11 +1,66 @@
-<?xml version="1.0"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="es" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="gestor_claves">
-                <source>Gestor de Claves</source>
-                <target>gestionnaire de clés</target>
-            </trans-unit>
-        </body>
-    </file>
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="es" target-language="fr" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="5.RPvD6" resname="Gestor de Claves">
+        <source>Gestor de Claves</source>
+        <target>gestionnaire de clés</target>
+      </trans-unit>
+      <trans-unit id="uPqVYzF" resname="Añadir clave">
+        <source>Añadir clave</source>
+        <target>__Añadir clave</target>
+      </trans-unit>
+      <trans-unit id="7I45ZTF" resname="Gestor de claves">
+        <source>Gestor de claves</source>
+        <target>__Gestor de claves</target>
+      </trans-unit>
+      <trans-unit id="D1bmjM1" resname="Ver Registro">
+        <source>Ver Registro</source>
+        <target>__Ver Registro</target>
+      </trans-unit>
+      <trans-unit id="C.6Tkop" resname="nombre">
+        <source>nombre</source>
+        <target>__nombre</target>
+      </trans-unit>
+      <trans-unit id="FveKfWM" resname="username">
+        <source>username</source>
+        <target>__username</target>
+      </trans-unit>
+      <trans-unit id="XohImNo" resname="password">
+        <source>password</source>
+        <target>__password</target>
+      </trans-unit>
+      <trans-unit id="giREF.l" resname="email">
+        <source>email</source>
+        <target>__email</target>
+      </trans-unit>
+      <trans-unit id="pZqyEn." resname="commentario">
+        <source>commentario</source>
+        <target>__commentario</target>
+      </trans-unit>
+      <trans-unit id="MNDgv6V" resname="Listar clave">
+        <source>Listar clave</source>
+        <target>__Listar clave</target>
+      </trans-unit>
+      <trans-unit id="M8EqIqO" resname="Introduce la clave:">
+        <source>Introduce la clave:</source>
+        <target>__Introduce la clave:</target>
+      </trans-unit>
+      <trans-unit id="dUKl6AD" resname="Añadir">
+        <source>Añadir</source>
+        <target>__Añadir</target>
+      </trans-unit>
+      <trans-unit id="Vb0RVGt" resname="Listar">
+        <source>Listar</source>
+        <target>__Listar</target>
+      </trans-unit>
+      <trans-unit id="k..7985" resname="Salir">
+        <source>Salir</source>
+        <target>__Salir</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

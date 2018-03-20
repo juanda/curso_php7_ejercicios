@@ -1,9 +1,9 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}Listar clave{% endblock %}
+{% block title %}{% trans %}Listar clave{% endtrans %}{% endblock %}
 
 {% block container %}
-    <h1>Gestor de claves</h1>    
+    <h1>{% trans %}Gestor de claves{% endtrans %}</h1>    
 
     {% for message in app.flashes('notice') %}
         <div class="alert alert-info" role="alert">
@@ -14,11 +14,11 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">name</th>
-                <th scope="col">username</th>
-                <th scope="col">password</th>
-                <th scope="col">email</th>
-                <th scope="col">comment</th>
+                <th scope="col">{%trans%}nombre{% endtrans %}</th>
+                <th scope="col">{% trans %}username{% endtrans %}</th>
+                <th scope="col">{% trans %}password{% endtrans %}</th>
+                <th scope="col">{% trans %}email{% endtrans %}</th>
+                <th scope="col">{% trans %}commentario{% endtrans %}</th>
             </tr>
         </thead>
         <tbody>

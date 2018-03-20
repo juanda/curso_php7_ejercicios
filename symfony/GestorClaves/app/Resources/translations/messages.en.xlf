@@ -1,11 +1,66 @@
-<?xml version="1.0"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="es" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="gestor_claves">
-                <source>Gestor de Claves</source>
-                <target>Key Manager</target>
-            </trans-unit>
-        </body>
-    </file>
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="es" target-language="en" datatype="plaintext" original="file.ext">
+    <header>
+      <tool tool-id="symfony" tool-name="Symfony"/>
+    </header>
+    <body>
+      <trans-unit id="5.RPvD6" resname="Gestor de Claves">
+        <source>Gestor de Claves</source>
+        <target>Key Manager</target>
+      </trans-unit>
+      <trans-unit id="uPqVYzF" resname="Añadir clave">
+        <source>Añadir clave</source>
+        <target>Add key</target>
+      </trans-unit>
+      <trans-unit id="7I45ZTF" resname="Gestor de claves">
+        <source>Gestor de claves</source>
+        <target>Key manager</target>
+      </trans-unit>
+      <trans-unit id="D1bmjM1" resname="Ver Registro">
+        <source>Ver Registro</source>
+        <target>Watch Register</target>
+      </trans-unit>
+      <trans-unit id="C.6Tkop" resname="nombre">
+        <source>nombre</source>
+        <target>name</target>
+      </trans-unit>
+      <trans-unit id="FveKfWM" resname="username">
+        <source>username</source>
+        <target>username</target>
+      </trans-unit>
+      <trans-unit id="XohImNo" resname="password">
+        <source>password</source>
+        <target>password</target>
+      </trans-unit>
+      <trans-unit id="giREF.l" resname="email">
+        <source>email</source>
+        <target>email</target>
+      </trans-unit>
+      <trans-unit id="pZqyEn." resname="commentario">
+        <source>commentario</source>
+        <target>comment</target>
+      </trans-unit>
+      <trans-unit id="MNDgv6V" resname="Listar clave">
+        <source>Listar clave</source>
+        <target>List keys</target>
+      </trans-unit>
+      <trans-unit id="M8EqIqO" resname="Introduce la clave:">
+        <source>Introduce la clave:</source>
+        <target>Enter the key:</target>
+      </trans-unit>
+      <trans-unit id="dUKl6AD" resname="Añadir">
+        <source>Añadir</source>
+        <target>Add</target>
+      </trans-unit>
+      <trans-unit id="Vb0RVGt" resname="Listar">
+        <source>Listar</source>
+        <target>List</target>
+      </trans-unit>
+      <trans-unit id="k..7985" resname="Salir">
+        <source>Salir</source>
+        <target>Logout</target>
+      </trans-unit>
+    </body>
+  </file>
 </xliff>

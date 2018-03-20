@@ -54,6 +54,6 @@ services:
             $options: %keyfile%
             
             
-#    AppBundle\EventListener\ExceptionListener:
-#        tags:
-#            - { name: kernel.event_listener, event: kernel.exception }
+    AppBundle\EventListener\ExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, priority: 16 }

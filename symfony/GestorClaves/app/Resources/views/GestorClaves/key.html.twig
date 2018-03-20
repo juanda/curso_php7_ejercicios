@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}Listar clave{% endblock %}
+{% block title %}{% trans %}Listar clave{% endtrans %}{% endblock %}
 
 {% block container %}
     <h1>{% trans %}Gestor de Claves{% endtrans %}</h1>
@@ -19,7 +19,7 @@
 
     <form action="{{url('key')}}" method="post">        
         <div class="form-group">
-            <label for="name">Introduce la clave: </label> 
+            <label for="name">{% trans %}Introduce la clave:{% endtrans %} </label> 
             <input class="form-control" name="key" id="key" />
         </div>
 

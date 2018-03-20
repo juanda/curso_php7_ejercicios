@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class DefaultController extends Controller
 {
@@ -43,5 +44,17 @@ class DefaultController extends Controller
         
         return new Response(sprintf('<html><body>Hola <pre>%s</pre></body></html>', print_r($user, true)));
                 
+    }
+    
+    /**
+     * @Route("/traduccion", name="traduccion")
+     */
+    public function TraduccionAction(TranslatorInterface $translator)
+    {
+        echo $translator->trans('Gestor de Claves');
+        echo '<br>';
+        echo $translator->trans('Sin traducir');
+        
+        return new Response('<html><body></body></html>');                
     }
 }

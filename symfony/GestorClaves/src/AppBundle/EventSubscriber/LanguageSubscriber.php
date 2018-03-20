@@ -22,13 +22,13 @@ class LanguageSubscriber implements EventSubscriberInterface {
         
         // return the subscribed events, their methods and priorities
         return array(
-            KernelEvents::REQUEST => ['changeLocale', 17]
+            KernelEvents::REQUEST => ['changeLocale', 0]
         );
     }
 
     public function changeLocale(GetResponseEvent $event) {
             
-        $event->getRequest()->setLocale('fr');
+        $event->getRequest()->setLocale('en');
                 
                 
     }
