@@ -7,7 +7,6 @@ use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Acme\KeyStorage\KeyFileStorage;
-use  Symfony\Component\Routing\RouterInterface;
 
 class GestorClavesControllerSubscriber implements EventSubscriberInterface {
 
@@ -15,11 +14,9 @@ class GestorClavesControllerSubscriber implements EventSubscriberInterface {
     private $keystorage;
 
 
-    public function __construct(SessionInterface $session, KeyFileStorage $keyStorage, RouterInterface $router) {        
+    public function __construct(SessionInterface $session, KeyFileStorage $keyStorage) {        
         $this->session = $session;
         $this->keystorage = $keyStorage;
-        $this->router = $router;
-        
     }
 
     public static function getSubscribedEvents() {
