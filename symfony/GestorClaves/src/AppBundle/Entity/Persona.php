@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="persona")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PersonaRepository")
  */
-class Persona
-{
+class Persona {
+
     /**
      * @var int
      *
@@ -29,19 +29,42 @@ class Persona
     private $nombre;
 
     /**
-     * @var string
-     * @ORM\OneToOne(targetEntity="Nif", cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="Nif", inversedBy="persona", cascade={"persist"})
      * @ORM\JoinColumn(name="nif_id", referencedColumnName="id")
      */
     private $nif;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Direccion", inversedBy="personas", cascade={"persist"})
+     * @ORM\JoinColumn(name="direccion_id", referencedColumnName="id")
+     */
+    private $direccion;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Telefono", cascade={"persist"})
+     * @ORM\JoinTable(name="persona_telefono",
+     *      joinColumns={@ORM\JoinColumn(name="persona_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="telefono_id", referencedColumnName="id", unique=true)}
+     *      )
+     * */
+    private $telefonos;
+    
+    /**
+     *@ORM\ManyToMany(targetEntity="Grupo", inversedBy="personas", cascade={"persist"})
+     *@ORM\JoinTable(name="persona_grupo",
+     *      joinColumns={@ORM\JoinColumn(name="persona_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="grupo_id", referencedColumnName=")}
+     *      )
+     * 
+     */
+    private $grupos;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -52,8 +75,7 @@ class Persona
      *
      * @return Persona
      */
-    public function setNombre($nombre)
-    {
+    public function setNombre($nombre) {
         $this->nombre = $nombre;
 
         return $this;
@@ -64,8 +86,7 @@ class Persona
      *
      * @return string
      */
-    public function getNombre()
-    {
+    public function getNombre() {
         return $this->nombre;
     }
 
@@ -76,8 +97,7 @@ class Persona
      *
      * @return Persona
      */
-    public function setNif(\AppBundle\Entity\Nif $nif = null)
-    {
+    public function setNif(\AppBundle\Entity\Nif $nif = null) {
         $this->nif = $nif;
 
         return $this;
@@ -88,8 +108,105 @@ class Persona
      *
      * @return \AppBundle\Entity\Nif
      */
-    public function getNif()
-    {
+    public function getNif() {
         return $this->nif;
+    }
+
+    /**
+     * Set direccion
+     *
+     * @param \AppBundle\Entity\Direccion $direccion
+     *
+     * @return Persona
+     */
+    public function setDireccion(\AppBundle\Entity\Direccion $direccion = null) {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    /**
+     * Get direccion
+     *
+     * @return \AppBundle\Entity\Direccion
+     */
+    public function getDireccion() {
+        return $this->direccion;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->telefonos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add telefono
+     *
+     * @param \AppBundle\Entity\Telefono $telefono
+     *
+     * @return Persona
+     */
+    public function addTelefono(\AppBundle\Entity\Telefono $telefono)
+    {
+        $this->telefonos[] = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Remove telefono
+     *
+     * @param \AppBundle\Entity\Telefono $telefono
+     */
+    public function removeTelefono(\AppBundle\Entity\Telefono $telefono)
+    {
+        $this->telefonos->removeElement($telefono);
+    }
+
+    /**
+     * Get telefonos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTelefonos()
+    {
+        return $this->telefonos;
+    }
+
+    /**
+     * Add grupo
+     *
+     * @param \AppBundle\Entity\Grupos $grupo
+     *
+     * @return Persona
+     */
+    public function addGrupo(\AppBundle\Entity\Grupo $grupo)
+    {
+        $this->grupos[] = $grupo;
+
+        return $this;
+    }
+
+    /**
+     * Remove grupo
+     *
+     * @param \AppBundle\Entity\Grupos $grupo
+     */
+    public function removeGrupo(\AppBundle\Entity\Grupo $grupo)
+    {
+        $this->grupos->removeElement($grupo);
+    }
+
+    /**
+     * Get grupos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGrupos()
+    {
+        return $this->grupos;
     }
 }

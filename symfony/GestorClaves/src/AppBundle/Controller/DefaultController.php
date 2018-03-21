@@ -64,26 +64,73 @@ class DefaultController extends Controller
     
     public function relacionesAction(){
         $em = $this->getDoctrine()->getManager();
+                
+        $grupo = new \AppBundle\Entity\Grupo();
+        $grupo->setNombre('g4');
+        
+        $grupo2 = new \AppBundle\Entity\Grupo();
+        $grupo2->setNombre('g5');
+        
+        $grupo3 = new \AppBundle\Entity\Grupo();
+        $grupo3->setNombre('g6');
         
         $persona = new \AppBundle\Entity\Persona();
-        $persona->setNombre('pepe2');
+        $persona->setNombre('juanito2');
         
-        $nif = new \AppBundle\Entity\Nif();
-        $nif->setNumero('111');
+        $persona2 = new \AppBundle\Entity\Persona();
+        $persona2->setNombre('pepito2');
         
-        $persona->setNif($nif);
+        $persona->addGrupo($grupo);
+        $persona->addGrupo($grupo2);
+        
+        $persona2->addGrupo($grupo);
+        $persona2->addGrupo($grupo3);
         
         $em->persist($persona);
+        $em->persist($persona2);
         
         $em->flush();
         
-        dump($persona);
-        
-        $personaDB = $em->getRepository('AppBundle:Persona')->findOneByNombre('pepe2');
-        
-        dump($personaDB);
-        
         return new Response('<html><body></body></html>');    
         
+    }
+    
+    /**
+     * @Route("/dql", name="dql")
+     */
+    function dqlAction(){
+        $em = $this->getDoctrine()->getManager();
+                
+//        $dql = <<< DQL
+//select f,a from AppBundle:Film f JOIN f.actor a where a.firstName LIKE :firstname AND f.releaseYear > :year
+//DQL;
+//        
+//        $query = $em->createQuery($dql)->setParameters([
+//            'firstname' => '%JOHN%',
+//            'year' => '1980'
+//        ]);
+//        
+        
+//        $query = $em->createQueryBuilder()
+//            ->select('a')
+//            ->from('AppBundle:Actor', 'a')
+//            ->where('a.firstName LIKE :patron')
+//            ->setParameter('patron', 'A%')
+//            ->getQuery();
+
+        
+        $actors = $em->getRepository('AppBundle:Actor')->findByNombreLike('%JOHN%');
+        
+//        foreach ($films as $film){
+//            echo '<b>' . $film->getTitle() . '</b><br>';
+//            $actors = $film->getActor();
+//            foreach ($actors as $actor){
+//                echo $actor->getFirstName() . ' ' . $actor->getLastName() . '<br>';
+//            }
+//        }
+//        
+        dump($actors);
+        
+        return new Response('<html><body></body></html>');
     }
 }
