@@ -30,7 +30,7 @@ class Persona
 
     /**
      * @var string
-     * @ORM\OneToOne(targetEntity="Nif")
+     * @ORM\OneToOne(targetEntity="Nif", cascade={"persist"})
      * @ORM\JoinColumn(name="nif_id", referencedColumnName="id")
      */
     private $nif;

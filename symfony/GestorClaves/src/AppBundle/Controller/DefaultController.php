@@ -57,4 +57,33 @@ class DefaultController extends Controller
         
         return new Response('<html><body></body></html>');                
     }
+    
+    /**
+     * @Route("/relaciones", name="relacione")
+     */
+    
+    public function relacionesAction(){
+        $em = $this->getDoctrine()->getManager();
+        
+        $persona = new \AppBundle\Entity\Persona();
+        $persona->setNombre('pepe2');
+        
+        $nif = new \AppBundle\Entity\Nif();
+        $nif->setNumero('111');
+        
+        $persona->setNif($nif);
+        
+        $em->persist($persona);
+        
+        $em->flush();
+        
+        dump($persona);
+        
+        $personaDB = $em->getRepository('AppBundle:Persona')->findOneByNombre('pepe2');
+        
+        dump($personaDB);
+        
+        return new Response('<html><body></body></html>');    
+        
+    }
 }
